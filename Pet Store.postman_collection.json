@@ -1,0 +1,981 @@
+{
+	"info": {
+		"_postman_id": "d66fdc5a-2bd2-4e8b-878a-a6391ea23d61",
+		"name": "Pet Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21556046"
+	},
+	"item": [
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "pet Id",
+					"item": [
+						{
+							"name": "Find pet by ID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "et",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "api_key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{petStoreUrl}}/pet/:petId",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a pet in the store with form data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{petStoreUrl}}/pet/:petId",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a pet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_key",
+										"value": "et",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{petStoreUrl}}/pet/:petId",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Uploads an image",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.variables.get(\"petId\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "additionalMetadata",
+											"value": "power",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"description": "file to upload",
+											"type": "file",
+											"src": "/D:/JMeter Intro FIles/Certificate/Testing_Checklist_Example.JPG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{petStoreUrl}}/pet/:petId/uploadImage",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId",
+										"uploadImage"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add a new pet to the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "Token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"category\": {\r\n    \"id\": 2,\r\n    \"name\": \"{{Name}}\"\r\n  },\r\n  \"name\": \"https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 3,\r\n      \"name\": \"{{Name}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{status}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{petStoreUrl}}/pet",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an existing pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 4,\r\n  \"category\": {\r\n    \"id\": 5,\r\n    \"name\": \"{{Name}}\"\r\n  },\r\n  \"name\": \"https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 6,\r\n      \"name\": \"{{Name}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{status}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{petStoreUrl}}/pet",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Pets by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{petStoreUrl}}/pet/findByStatus?status=pending&status=sold",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								},
+								{
+									"key": "status",
+									"value": "sold"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "order Id",
+							"item": [
+								{
+									"name": "Find purchase order by ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{petStoreUrl}}/store/order/:orderId",
+											"host": [
+												"{{petStoreUrl}}"
+											],
+											"path": [
+												"store",
+												"order",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete purchase order by ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{petStoreUrl}}/store/order/:orderId",
+											"host": [
+												"{{petStoreUrl}}"
+											],
+											"path": [
+												"store",
+												"order",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId",
+													"value": "8"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Place an order for a pet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 8,\r\n  \"petId\": 7,\r\n  \"quantity\": 9,\r\n  \"shipDate\": \"2022-06-24T11:03:35.268Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{petStoreUrl}}/store/order",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"store",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Returns pet inventories by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "et",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{petStoreUrl}}/store/inventory",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"store",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "username",
+					"item": [
+						{
+							"name": "Get user by username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.sendRequest(\"https://petstore.swagger.io/v2/swagger.json\", function (err, response) {\r",
+											"    console.log(response.json());\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{petStoreUrl}}/user/:username",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "et"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updated user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 18,\r\n  \"username\": \"velit consequat commodo occaecat\",\r\n  \"firstName\": \"cupidatat pariatur nulla enim\",\r\n  \"lastName\": \"mollit\",\r\n  \"email\": \"min\",\r\n  \"password\": \"esse Duis cupidatat\",\r\n  \"phone\": \"ut quis\",\r\n  \"userStatus\": 76146635\r\n}"
+								},
+								"url": {
+									"raw": "{{petStoreUrl}}/user/:username",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "et"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.sendRequest(\"https://petstore.swagger.io/v2/swagger.json\", function (err, response) {\r",
+											"    console.log(response.json());\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{petStoreUrl}}/user/:username",
+									"host": [
+										"{{petStoreUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "et"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"id\": 15,\r\n  \"username\": \"velit consequat commodo occaecat\",\r\n  \"firstName\": \"cupidatat pariatur nulla enim\",\r\n  \"lastName\": \"mollit\",\r\n  \"email\": \"min\",\r\n  \"password\": \"esse Duis cupidatat\",\r\n  \"phone\": \"ut quis\",\r\n  \"userStatus\": 76146635\r\n}"
+						},
+						"url": {
+							"raw": "{{petStoreUrl}}/user",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates list of users with given input array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 14,\r\n    \"username\": \"incididunt consequat ad nostrud nisi\",\r\n    \"firstName\": \"pariatur tempor consectetur Duis\",\r\n    \"lastName\": \"non cillum Ut est nulla\",\r\n    \"email\": \"veniam enim dolor\",\r\n    \"password\": \"adipisicing\",\r\n    \"phone\": \"sed elit\",\r\n    \"userStatus\": 26547811\r\n  },\r\n  {\r\n    \"id\": 16,\r\n    \"username\": \"ipsum ut Ut Excepteur incididunt\",\r\n    \"firstName\": \"voluptate magna pariatur\",\r\n    \"lastName\": \"elit amet ipsum\",\r\n    \"email\": \"quis id sunt\",\r\n    \"password\": \"esse sed Excepteur ullamco\",\r\n    \"phone\": \"minim Excepteur magna\",\r\n    \"userStatus\": -26040400\r\n  }\r\n]"
+						},
+						"url": {
+							"raw": "{{petStoreUrl}}/user/createWithArray",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates list of users with given input array",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 10,\r\n    \"username\": \"incididunt consequat adipisicing\",\r\n    \"firstName\": \"cillum\",\r\n    \"lastName\": \"do magna labore\",\r\n    \"email\": \"cillum ullamco dolore\",\r\n    \"password\": \"laborum tempor exercit\",\r\n    \"phone\": \"Lorem nulla\",\r\n    \"userStatus\": 44367997\r\n  },\r\n  {\r\n    \"id\": 12,\r\n    \"username\": \"pariatur in elit\",\r\n    \"firstName\": \"Excepteur\",\r\n    \"lastName\": \"voluptate consequ\",\r\n    \"email\": \"ea aute est sunt eiusmod\",\r\n    \"password\": \"qui aute sint adipisicing\",\r\n    \"phone\": \"Duis\",\r\n    \"userStatus\": -76245543\r\n  }\r\n]"
+						},
+						"url": {
+							"raw": "{{petStoreUrl}}/user/createWithList",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs user into the system",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/user/login?username=et&password=et",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "et"
+								},
+								{
+									"key": "password",
+									"value": "et"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs out current logged in user session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{petStoreUrl}}/user/logout",
+							"host": [
+								"{{petStoreUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "petStoreUrl",
+			"value": "https://petstore.swagger.io/v2"
+		}
+	]
+}
